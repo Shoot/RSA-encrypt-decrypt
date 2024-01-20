@@ -126,7 +126,7 @@ void decrypt(ll d, ll open, ll N) {
 
 int main() {
     ll first;
-    cout << "1=Расшифровать, 2=Зашифровать? >> ";
+    cout << "1-Расшифровать, 2-Зашифровать? >> ";
     cin >> first;
     ll N, e;
     cout << "N, e (через пробел)? >> ";
@@ -152,7 +152,6 @@ int main() {
             cout << "Введи зашифрованные данные? >> ";
             cin >> open;
             decrypt(d, open, N);
-            cout << "\n";
         }
     }
     else if (first == 2) {
@@ -161,10 +160,9 @@ int main() {
         cin >> tests;
         while (tests--) {
             ll secret;
-            cout << "Введи данные которые нужно зашифровать ? >> ";
+            cout << "Введи данные которые нужно зашифровать? >> ";
             cin >> secret;
             encrypt(e, secret, N);
-            cout << "\n";
         }
     }
     else {
