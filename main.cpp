@@ -75,31 +75,24 @@
 #include <unordered_map>
 #include <unordered_set>
 using namespace std;
-
 using ll = long long;
 
-ll gcdExtended(ll a, ll b, ll &x, ll &y) {
-    // Базовый случай: если b равно 0, то НОД равен a, а x и y равны 1 и 0 соответственно
+ll gcdex(ll a, ll b, ll& x, ll& y) {
     if (b == 0) {
         x = 1;
         y = 0;
         return a;
     }
-
-    // Рекурсивный шаг: находим НОД для b и a % b
     ll x1, y1;
-    ll gcd = gcdExtended(b, a % b, x1, y1);
-
-    // Обновляем x и y
+    ll d = gcdex(b, a % b, x1, y1);
     x = y1;
-    y = x1 - (a / b) * y1;
-
-    return gcd;
+    y = x1 - y1 * (a / b);
+    return d;
 }
 
 ll modInverse(ll a, ll m) {
     ll x, y;
-    ll gcd = gcdExtended(a, m, x, y);
+    ll gcd = gcdex(a, m, x, y);
     // Если a и m не взаимно просты (НОД не равен 1), то обратного по модулю не существует
     if (gcd != 1) {
         cout << "Неверный инпут!\n";
@@ -124,7 +117,7 @@ void decrypt(ll d, ll open, ll N) {
     cout << "Ответ: <" << res << ">\n";
 }
 
-int main() {
+int32_t main() {
     ll first;
     cout << "1-Расшифровать, 2-Зашифровать? >> ";
     cin >> first;
